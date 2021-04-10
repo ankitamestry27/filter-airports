@@ -172,9 +172,27 @@ header {
     border-bottom: 2px solid #000;
     font-size: 16px;
     outline: none; }
-
-.filter .header {
-  padding: 27px 15px;
+.filter-section .filter {
+  margin-bottom: 45px; }
+  .filter-section .filter .header {
+    padding: 27px 15px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    background-color: #e7e7e7; }
+    .filter-section .filter .header li {
+      width: calc(100% / 7);
+      color: #000;
+      font-size: 17px;
+      font-weight: bold; }
+.filter-section .bottom {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -184,12 +202,27 @@ header {
   -moz-box-pack: justify;
   -ms-flex-pack: justify;
   -webkit-justify-content: space-between;
-  justify-content: space-between;
-  background-color: #e7e7e7; }
-  .filter .header li {
-    width: calc(100% / 7);
+  justify-content: space-between; }
+  .filter-section .bottom .results-text {
     color: #000;
-    font-size: 17px;
-    font-weight: bold; }
+    font-size: 16px; }
+    .filter-section .bottom .results-text span {
+      font-weight: bold; }
+  .filter-section .bottom .previous, .filter-section .bottom .next {
+    text-indent: -999999px;
+    position: relative; }
+    .filter-section .bottom .previous::before, .filter-section .bottom .next::before {
+      content: '\f060';
+      font-family: FontAwesome;
+      text-indent: 0;
+      position: absolute;
+      color: #000;
+      font-size: 27px; }
+  .filter-section .bottom .previous::before {
+    content: '\f060';
+    left: 0; }
+  .filter-section .bottom .next::before {
+    content: '\f061';
+    right: 0; }
 
 /*# sourceMappingURL=style.css.map */

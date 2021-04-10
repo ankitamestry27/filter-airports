@@ -66,20 +66,66 @@
 			outline: none;
 		}
 	}
-}
 
-.filter {
-	.header {
-		padding: 27px 15px;
+	.filter {
+		margin-bottom: 45px;
+
+		.header {
+			padding: 27px 15px;
+			@include flexbox();
+			@include justify-content(space-between);
+			background-color: map-get($colors , grey-dark);
+
+			li {
+				width: calc(100% / 7);
+				color: map-get($colors , primary);
+				font-size: 17px;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.bottom {
 		@include flexbox();
 		@include justify-content(space-between);
-		background-color: map-get($colors , grey-dark);
 
-		li {
-			width: calc(100% / 7);
+		.results-text {
 			color: map-get($colors , primary);
-			font-size: 17px;
-    	font-weight: bold;
+			font-size: 16px;
+
+			span { font-weight: bold; }
+		}		
+
+		%arrow {
+			text-indent: -999999px;
+    	position: relative;
+
+			&::before {
+				content: '\f060';
+				font-family: FontAwesome;
+				text-indent: 0;
+				position: absolute;
+				color: map-get($colors , primary);
+				font-size: 27px;
+			}
+		}
+
+		.previous {
+			@extend %arrow;
+
+			&::before {
+				content: '\f060';
+				left: 0;
+			}
+		}
+
+		.next {
+			@extend %arrow;
+
+			&::before {
+				content: '\f061';
+				right: 0;
+			}
 		}
 	}
 }
