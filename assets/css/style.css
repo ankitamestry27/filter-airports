@@ -111,6 +111,7 @@ header {
     color: #e0e0e0; }
 
 .filter-section .top {
+  margin-bottom: 35px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -124,9 +125,8 @@ header {
 .filter-section .type-list {
   margin-top: 15px; }
   .filter-section .type-list li {
+    margin: 0 18px 7px 0;
     display: inline-block; }
-    .filter-section .type-list li:not(:last-of-type) {
-      margin-right: 18px; }
   .filter-section .type-list a {
     padding: 4px 0 0 20px;
     position: relative;
@@ -161,6 +161,7 @@ header {
     .filter-section .type-list a.active::after {
       border-color: #fff; }
 .filter-section .right {
+  min-width: 190px;
   width: 35%; }
   .filter-section .right form {
     margin-top: 10px; }
@@ -171,5 +172,24 @@ header {
     border-bottom: 2px solid #000;
     font-size: 16px;
     outline: none; }
+
+.filter .header {
+  padding: 27px 15px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  background-color: #e7e7e7; }
+  .filter .header li {
+    width: calc(100% / 7);
+    color: #000;
+    font-size: 17px;
+    font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */
