@@ -32,13 +32,13 @@
           <div class="top">
             <div class="left">
               <h2>Type</h2>
-              <ul class="type-list">
-                <li><a href="#FIXME">Small</a></li>
-                <li><a href="#FIXME" class="active">Medium</a></li>
-                <li><a href="#FIXME">Large</a></li>
-                <li><a href="#FIXME">Heliport</a></li>
-                <li><a href="#FIXME">Closed</a></li>
-                <li><a href="#FIXME">In your favorites</a></li>
+              <ul class="type">
+                <li><a href="#FIXME" data-type="small">Small</a></li>
+                <li><a href="#FIXME" data-type="medium">Medium</a></li>
+                <li><a href="#FIXME" data-type="large">Large</a></li>
+                <li><a href="#FIXME" data-type="heliport">Heliport</a></li>
+                <li><a href="#FIXME" data-type="closed">Closed</a></li>
+                <li><a href="#FIXME" data-type="favorites">In your favorites</a></li>
               </ul>
             </div>
             <div class="right">
@@ -61,11 +61,12 @@
               <li>Type</li>
             </ul>
             <ul class="results"></ul>
+            <span class="message">No Results Found</span>
             <img src="./assets/images/loader.gif" alt="Loader" class="loader">
           </div>
           <!-- filter division ends here -->
           <div class="bottom">
-            <a href="#FIXME" class="previous disable" title="Previous">previous</a>
+            <a href="#FIXME" class="previous" title="Previous">previous</a>
             <span class="results-text">Showing <span class="res-numbers"><span class="start">0</span>-<span
                   class="end">0</span></span> of <span class="res-total">0</span>
               results</span>

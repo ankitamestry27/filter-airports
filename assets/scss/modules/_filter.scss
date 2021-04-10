@@ -5,7 +5,7 @@
 		@include justify-content(space-between);
 	}
 	
-	.type-list {
+	.type {
 		margin-top: 15px;
 
 		li {
@@ -112,6 +112,16 @@
 		ul {
 			@extend %list;
 		}
+	}
+
+	.message {
+    margin: 20px 0;
+    display: none;
+    font-size: 16px;
+		font-weight: bold;
+		text-align: center;
+
+		&.show { display: block; }
 	}
 
 	.loader {
