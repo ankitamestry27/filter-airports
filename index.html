@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <title>Filter Airports</title>
@@ -11,22 +12,71 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" media="screen" href="assets/css/style.css" />
 </head>
+
 <body>
   <!--container starts here-->
   <div class="container">
     <!--header starts here-->
-    <header></header>
+    <header>
+      <div class="wrapper">
+        <h1><a href="index.html" title="Filter Airports">filter <span>airports</span></a></h1>
+        <a href="#FIXME" class="menu">menu</a>
+      </div>
+    </header>
     <!--header ends here-->
     <!--main starts here-->
-    <main></main>
+    <main>
+      <section class="filter-container">
+        <div class="wrapper">
+          <!-- top division starts here -->
+          <div class="top">
+            <div class="left">
+              <h2>type</h2>
+              <ul>
+                <li><a href="#FIXME">small</a></li>
+                <li><a href="#FIXME">medium</a></li>
+                <li><a href="#FIXME">large</a></li>
+                <li><a href="#FIXME">heliport</a></li>
+                <li><a href="#FIXME">closed</a></li>
+                <li><a href="#FIXME">in your favorites</a></li>
+              </ul>
+            </div>
+            <div class="right">
+              <h2>filter by search</h2>
+              <form action="index.html">
+                <input type="search" title="Search">
+              </form>
+            </div>
+          </div>
+          <!-- top division ends here -->
+          <!-- filter division starts here -->
+          <div class="filter">
+            <ul class="header">
+              <li>Name</li>
+              <li>ICAO</li>
+              <li>IATA</li>
+              <li>Elev.</li>
+              <li>Lat.</li>
+              <li>Long.</li>
+              <li>Type</li>
+            </ul>
+            <ul class="results"></ul>
+          </div>
+          <!-- filter division ends here -->
+          <div class="bottom">
+            <a href="#FIXME" class="previous" title="Previous">previous</a>
+            <span class="results-text">Showing <span class="res-numbers">1-4</span> of <span
+                class="res-total">10,382</span> results</span>
+            <a href="#FIXME" class="next" title="Next">next</a>
+          </div>
+        </div>
+      </section>
+    </main>
     <!--main ends here-->
-
-    <!--footer starts here-->
-    <footer></footer>
-    <!--footer ends here-->
   </div>
   <!--container ends here-->
   <script src="assets/js/vendors/jquery-1.8.3.min.js"></script>
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>
