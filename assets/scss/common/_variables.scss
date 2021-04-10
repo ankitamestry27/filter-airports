@@ -1,0 +1,23 @@
+/* Colors
+=========================*/
+$colors: (
+  primary: #000,
+  secondary: #fff,
+  grey: #f4f4f4,
+  grey-medium: #e0e0e0,
+  grey-dark: #e7e7e7,
+);
+
+/* Breakpoints
+=========================*/
+$breakpoints: (
+  mac: 1920px,
+  pc: 1440px,
+  small-pc: 1280px,
+  ipad-landscape: 1210px,
+  mini-pc: 1024px,
+  mini-ipad: 1025px,
+  ipad: 995px,
+  iphone: 767px,
+  iphone-potrait: 480px,
+);

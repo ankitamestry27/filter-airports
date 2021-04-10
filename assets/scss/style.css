@@ -1,0 +1,61 @@
+/*
+Error: File to import not found or unreadable: ./common/fonts.
+        on line 3 of scss/style.scss
+
+1: @import './common/reset';
+2: @import './common/variables';
+3: @import './common/fonts';
+4: @import './common/mixin';
+5: @import './common/common';
+6: @import './common/header';
+7: @import './common/footer';
+8: @import './modules/banner';
+
+Backtrace:
+scss/style.scss:3
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/import_node.rb:44:in `import'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/import_node.rb:28:in `imported_file'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/import_node.rb:37:in `css_import?'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:310:in `visit_import'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:294:in `watch'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/plugin.rb:109:in `method_missing'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:358:in `watch_or_update'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
+/home/ankita/.rvm/gems/ruby-2.6.3/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
+/home/ankita/.rvm/gems/ruby-2.6.3/bin/sass:23:in `load'
+/home/ankita/.rvm/gems/ruby-2.6.3/bin/sass:23:in `<main>'
+/home/ankita/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `eval'
+/home/ankita/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: ./common/fonts.\A         on line 3 of scss/style.scss\A \A 1: @import './common/reset';\A 2: @import './common/variables';\A 3: @import './common/fonts';\A 4: @import './common/mixin';\A 5: @import './common/common';\A 6: @import './common/header';\A 7: @import './common/footer';\A 8: @import './modules/banner';"; }

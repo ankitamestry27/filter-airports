@@ -1,0 +1,18 @@
+header {
+	margin-bottom: 47px;
+
+	.wrapper {
+		@include flexbox();
+		@include justify-content(space-between);
+		@include align-items(center);
+	}
+
+	h1 {
+		font-size: 52px;
+		font-weight: bold;
+
+		a { color: map-get($colors , primary);  }
+
+		span { color: map-get($colors , grey-medium); }
+	}
+}
