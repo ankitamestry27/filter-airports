@@ -67,22 +67,57 @@
 		}
 	}
 
+	%list {
+		padding: 27px 15px;
+		@include flexbox();
+		@include justify-content(space-between);
+
+		li {
+			width: calc(100% / 7);
+			padding-right: 10px;
+			color: map-get($colors , primary);
+			font-size: 17px;
+			word-break: break-word;
+		}
+	}
+
 	.filter {
 		margin-bottom: 45px;
 
 		.header {
-			padding: 27px 15px;
-			@include flexbox();
-			@include justify-content(space-between);
+			@extend %list;
+			
 			background-color: map-get($colors , grey-dark);
 
 			li {
-				width: calc(100% / 7);
-				color: map-get($colors , primary);
-				font-size: 17px;
 				font-weight: bold;
 			}
 		}
+	}
+
+	.results {
+		&>li {
+			display: none;
+			background-color: map-get($colors , grey);
+
+			&:nth-of-type(2n) {
+				background-color: map-get($colors , secondary);
+			}
+		}
+	}
+
+	.result {
+		&.show { display: block; }
+
+		ul {
+			@extend %list;
+		}
+	}
+
+	.loader {
+		width: 45px;
+    display: block;
+    margin: 10px auto;
 	}
 
 	.bottom {
@@ -107,6 +142,10 @@
 				position: absolute;
 				color: map-get($colors , primary);
 				font-size: 27px;
+			}
+
+			&.disable {
+				z-index: -9999;
 			}
 		}
 
