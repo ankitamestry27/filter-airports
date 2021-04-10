@@ -103,7 +103,7 @@
 		// }
 
 		// show results according to pagination after user clicked on previous button
-		for (var i = startNum - (num + 1); i < startNum - 1; i++) {
+		for (var i = startNum - num; i <= endNum - num; i++) {
 			$('.result:nth-of-type(' + i + ')').addClass('show');
 		}
 
