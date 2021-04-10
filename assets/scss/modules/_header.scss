@@ -8,11 +8,7 @@ header {
 	}
 
 	h1 {
-		font-size: 52px;
-		font-weight: bold;
-
 		a { color: map-get($colors , primary);  }
-
-		span { color: map-get($colors , grey-medium); }
+  	span { color: map-get($colors , grey-medium); }
 	}
 }
