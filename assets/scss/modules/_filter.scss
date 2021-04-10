@@ -3,6 +3,10 @@
 		margin-bottom: 35px;
 		@include flexbox();
 		@include justify-content(space-between);
+
+		@include responsive(map-get($breakpoints, ipad)) {
+			display: block;
+		}
 	}
 	
 	.type {
@@ -11,6 +15,8 @@
 		li {
 			margin: 0 18px 7px 0;
 			display: inline-block;
+
+			@include responsive(map-get($breakpoints, ipad)) { margin-right: 12px; }
 		}
 
 		a { 
@@ -18,6 +24,8 @@
 			position: relative;
 			color: map-get($colors , primary);
 			font-size: 16px;
+
+			@include responsive(map-get($breakpoints, ipad)) { font-size: 14px; }
 
 			&::before {
 				content: '';
@@ -55,6 +63,11 @@
 		min-width: 190px;
 		width: 35%;
 
+		@include responsive(map-get($breakpoints, ipad)) {
+			width: 100%;
+			margin-top: 20px;
+		}
+
 		form { margin-top: 10px; }
 
 		input {
@@ -64,6 +77,14 @@
     	border-bottom: 2px solid map-get($colors , primary);
 			font-size: 16px;
 			outline: none;
+
+			@include responsive(map-get($breakpoints, ipad)) {
+				min-width: 200px;
+				width: 40%;
+				font-size: 14px;
+			}
+
+			@include responsive(map-get($breakpoints, iphone-potrait)) { width: 100%; }
 		}
 	}
 
@@ -72,17 +93,25 @@
 		@include flexbox();
 		@include justify-content(space-between);
 
+		@include responsive(map-get($breakpoints, ipad)) { padding: 16px 10px; }
+
 		li {
 			width: calc(100% / 7);
 			padding-right: 10px;
 			color: map-get($colors , primary);
 			font-size: 17px;
 			word-break: break-word;
+
+			@include responsive(map-get($breakpoints, ipad)) { font-size: 14px; }
 		}
 	}
 
 	.filter {
-		margin-bottom: 45px;
+		overflow-x: auto;
+
+		.wrap {
+			@include responsive(map-get($breakpoints, iphone)) { width: 170%; }
+		}
 
 		.header {
 			@extend %list;
@@ -131,12 +160,15 @@
 	}
 
 	.bottom {
+		margin-top: 45px;
 		@include flexbox();
 		@include justify-content(space-between);
 
 		.results-text {
 			color: map-get($colors , primary);
 			font-size: 16px;
+
+			@include responsive(map-get($breakpoints, ipad)) { font-size: 14px; }
 
 			span { font-weight: bold; }
 		}		
@@ -152,6 +184,8 @@
 				position: absolute;
 				color: map-get($colors , primary);
 				font-size: 27px;
+
+				@include responsive(map-get($breakpoints, ipad)) { font-size: 24px; }
 			}
 
 			&.disable {

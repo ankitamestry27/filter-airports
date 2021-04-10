@@ -62,6 +62,9 @@ img {
 
 body {
   background-color: #f4f4f4; }
+  @media only screen and (max-width: 480px) {
+    body {
+      background-color: #fff; } }
   body * {
     font-family: sans-serif; }
 
@@ -71,10 +74,20 @@ body {
   padding: 45px 0;
   margin: 20px auto;
   background-color: #fff; }
+  @media only screen and (max-width: 995px) {
+    .container {
+      width: 97%; } }
+  @media only screen and (max-width: 480px) {
+    .container {
+      width: 100%;
+      margin: 0 auto; } }
 
 .wrapper {
   width: 93%;
   margin: 0 auto; }
+  @media only screen and (max-width: 480px) {
+    .wrapper {
+      width: 96%; } }
 
 a {
   text-decoration: none; }
@@ -82,10 +95,19 @@ a {
 h1 {
   font-size: 52px;
   font-weight: bold; }
+  @media only screen and (max-width: 995px) {
+    h1 {
+      font-size: 40px; } }
+  @media only screen and (max-width: 480px) {
+    h1 {
+      font-size: 32px; } }
 
 h2 {
   font-size: 23px;
   font-weight: bold; }
+  @media only screen and (max-width: 995px) {
+    h2 {
+      font-size: 20px; } }
 
 header {
   margin-bottom: 47px; }
@@ -122,16 +144,25 @@ header {
   -ms-flex-pack: justify;
   -webkit-justify-content: space-between;
   justify-content: space-between; }
+  @media only screen and (max-width: 995px) {
+    .filter-section .top {
+      display: block; } }
 .filter-section .type {
   margin-top: 15px; }
   .filter-section .type li {
     margin: 0 18px 7px 0;
     display: inline-block; }
+    @media only screen and (max-width: 995px) {
+      .filter-section .type li {
+        margin-right: 12px; } }
   .filter-section .type a {
     padding: 4px 0 0 20px;
     position: relative;
     color: #000;
     font-size: 16px; }
+    @media only screen and (max-width: 995px) {
+      .filter-section .type a {
+        font-size: 14px; } }
     .filter-section .type a::before {
       content: '';
       width: 13px;
@@ -163,6 +194,10 @@ header {
 .filter-section .right {
   min-width: 190px;
   width: 35%; }
+  @media only screen and (max-width: 995px) {
+    .filter-section .right {
+      width: 100%;
+      margin-top: 20px; } }
   .filter-section .right form {
     margin-top: 10px; }
   .filter-section .right input {
@@ -172,6 +207,14 @@ header {
     border-bottom: 2px solid #000;
     font-size: 16px;
     outline: none; }
+    @media only screen and (max-width: 995px) {
+      .filter-section .right input {
+        min-width: 200px;
+        width: 40%;
+        font-size: 14px; } }
+    @media only screen and (max-width: 480px) {
+      .filter-section .right input {
+        width: 100%; } }
 .filter-section .filter .header, .filter-section .result ul {
   padding: 27px 15px;
   display: -webkit-box;
@@ -184,14 +227,23 @@ header {
   -ms-flex-pack: justify;
   -webkit-justify-content: space-between;
   justify-content: space-between; }
+  @media only screen and (max-width: 995px) {
+    .filter-section .filter .header, .filter-section .result ul {
+      padding: 16px 10px; } }
   .filter-section .filter .header li, .filter-section .result ul li {
     width: calc(100% / 7);
     padding-right: 10px;
     color: #000;
     font-size: 17px;
     word-break: break-word; }
+    @media only screen and (max-width: 995px) {
+      .filter-section .filter .header li, .filter-section .result ul li {
+        font-size: 14px; } }
 .filter-section .filter {
-  margin-bottom: 45px; }
+  overflow-x: auto; }
+  @media only screen and (max-width: 767px) {
+    .filter-section .filter .wrap {
+      width: 170%; } }
   .filter-section .filter .header {
     background-color: #e7e7e7; }
     .filter-section .filter .header li {
@@ -216,6 +268,7 @@ header {
   display: block;
   margin: 10px auto; }
 .filter-section .bottom {
+  margin-top: 45px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -229,6 +282,9 @@ header {
   .filter-section .bottom .results-text {
     color: #000;
     font-size: 16px; }
+    @media only screen and (max-width: 995px) {
+      .filter-section .bottom .results-text {
+        font-size: 14px; } }
     .filter-section .bottom .results-text span {
       font-weight: bold; }
   .filter-section .bottom .previous, .filter-section .bottom .next {
@@ -241,6 +297,9 @@ header {
       position: absolute;
       color: #000;
       font-size: 27px; }
+      @media only screen and (max-width: 995px) {
+        .filter-section .bottom .previous::before, .filter-section .bottom .next::before {
+          font-size: 24px; } }
     .filter-section .bottom .disable.previous, .filter-section .bottom .disable.next {
       z-index: -9999; }
   .filter-section .bottom .previous::before {

@@ -22,6 +22,8 @@ img {
 body {
   background-color: map-get($colors , grey );
 
+  @include responsive(map-get($breakpoints, iphone-potrait)) { background-color: map-get($colors , secondary); }
+
   * {
     font-family: sans-serif;
   }
@@ -33,11 +35,20 @@ body {
   padding: 45px 0;
   margin: 20px auto;
   background-color: map-get($colors , secondary);
+
+  @include responsive(map-get($breakpoints, ipad)) { width: 97%; }
+
+  @include responsive(map-get($breakpoints, iphone-potrait)) {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
 .wrapper {
   width: 93%;
   margin: 0 auto;
+
+  @include responsive(map-get($breakpoints, iphone-potrait)) { width: 96%; }
 }
 
 a {
@@ -47,9 +58,14 @@ a {
 h1 {
   font-size: 52px;
   font-weight: bold;
+
+  @include responsive(map-get($breakpoints, ipad)) { font-size: 40px; }
+  @include responsive(map-get($breakpoints, iphone-potrait)) { font-size: 32px; }
 }
 
 h2 {
   font-size: 23px;
   font-weight: bold;
+
+  @include responsive(map-get($breakpoints, ipad)) { font-size: 20px; }
 }
