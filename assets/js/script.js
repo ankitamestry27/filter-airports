@@ -1,231 +1,251 @@
-(function ($, w, d) {
-	var num = 4, // variable for total number of results should display on frontend
-		airportJson = './assets/data/airports.json',
-		$previous = $('.previous'),
-		$next = $('.next'),
-		$loader = $('.loader'),
-		$results = $('.results'),
-		li,
-		$message = $('.message'),
-		$startNumElement = $('.res-numbers .start'),
-		$endNumElement = $('.res-numbers .end'),
-		$resTotal = $('.res-total'),
-		$searchForm = $('#searchForm'),
-		$searchField = $searchForm.find('input[type="search"]');
+var num = 4, // variable for total number of results should display on frontend
+  airportJson = './assets/data/airports.json',
+  $previous = document.getElementsByClassName('previous'),
+  $next = document.getElementsByClassName('next'),
+  $loader = document.getElementsByClassName('loader'),
+  $results = document.getElementsByClassName('results'),
+  li = '',
+  ul = '',
+  $message = document.getElementsByClassName('message'),
+  $startNumElement = document.getElementsByClassName('start'),
+  $endNumElement = document.getElementsByClassName('end'),
+  $resTotal = document.getElementsByClassName('res-total'),
+  $searchForm = document.getElementById('searchForm'),
+  $searchField = document.querySelector('#searchForm input[type="search"]');
 
-	// function for creating list
-	function createList(dataR) {
-		var name = dataR.name ? dataR.name : '-',
-			icao = dataR.icao ? dataR.icao : '-',
-			iata = dataR.iata ? dataR.iata : '-',
-			elevation = dataR.elevation ? dataR.elevation : '-',
-			latitude = dataR.latitude ? dataR.latitude : '-',
-			longitude = dataR.longitude ? dataR.longitude : '-',
-			type = dataR.type ? dataR.type : '-';
+// function for creating list
+function createList(dataR) {
+  var name = dataR.name ? dataR.name : '-',
+    icao = dataR.icao ? dataR.icao : '-',
+    iata = dataR.iata ? dataR.iata : '-',
+    elevation = dataR.elevation ? dataR.elevation : '-',
+    latitude = dataR.latitude ? dataR.latitude : '-',
+    longitude = dataR.longitude ? dataR.longitude : '-',
+    type = dataR.type ? dataR.type : '-',
+    nameLi,
+    icaoLi,
+    iataLi,
+    elevationLi,
+    latitudeLi,
+    longitudeLi,
+    typeLi;
 
-		li = `<li class="result">
-			<ul>
-				<li>` + name + `</li>
-				<li>` + icao + `</li>
-				<li>` + iata + `</li>
-				<li>` + elevation + `</li>
-				<li>` + latitude + `</li>
-				<li>` + longitude + `</li>
-				<li>` + type + `</li>
-			</ul>
-		</li>`;
+  li = document.createElement('li');
+  li.className = 'result';
 
-		$results.append(li);
-	}
+  ul = document.createElement('ul');
+  li.appendChild(ul);
 
-	// function for updating result numbers at bottom of the page
-	function updateResultNumbers(count) {
-		for (var j = 1; j <= num; j++) {
-			$('.result:nth-of-type(' + j + ')').addClass('show');
-		}
+  function createLi(list, value) {
+    list = document.createElement('li');
+    list.appendChild(document.createTextNode(value));
+    ul.appendChild(list);
+  }
 
-		$startNumElement.text(1);
-		$endNumElement.text(num);
-		$resTotal.text(count);
-	}
+  createLi(nameLi, name);
+  createLi(icaoLi, icao);
+  createLi(iataLi, iata);
+  createLi(elevationLi, elevation);
+  createLi(latitudeLi, latitude);
+  createLi(longitudeLi, longitude);
+  createLi(typeLi, type);
 
-	// Show OR Hide message
-	function showHideMessage() {
-		if ($('.result').length == 0) {
-			$message.addClass('show');
-		} else {
-			$message.removeClass('show');
-		}
-	}
+  document.getElementsByClassName('results')[0].appendChild(li);
+}
 
-	// show results on page load
-	fetch(airportJson)
-		.then(function (response) {
-			return response.json();
-		})
-		.then(function (data) {
-			var dataR,
-				dataCount = Object.keys(data).length;
+// function for updating result numbers at bottom of the page
+function updateResultNumbers(count) {
+  for (var j = 1; j <= num; j++) {
+    document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
+  }
 
-			$loader.hide();
+  $startNumElement[0].innerHTML = 1;
+  $endNumElement[0].innerHTML = num;
+  $resTotal[0].innerHTML = count;
+}
 
-			for (var i = 0; i < dataCount; i++) {
-				dataR = data[i];
-				createList(dataR);
-			}
+// Show OR Hide message
+function showHideMessage() {
+  if (document.getElementsByClassName('result').length == 0) {
+    $message[0].classList.add('show');
+  } else {
+    $message[0].classList.remove('show');
+  }
+}
 
-			updateResultNumbers(dataCount);
-		});
+// show results on page visit
+fetch(airportJson)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    var dataCount = Object.keys(data).length;
 
-	// function for next button click
-	$next.click(function (e) {
-		e.preventDefault();
-		var $startNumElement = $('.res-numbers .start'),
-			startNum = parseInt($startNumElement.text()),
-			$endNumElement = $('.res-numbers .end'),
-			endNum = parseInt($endNumElement.text());
+    $loader[0].classList.add('hide');
 
-		// hide all existing results
-		$('.result').removeClass('show');
+    for (var i = 0; i < dataCount; i++) {
+      createList(data[i]);
+    }
 
-		// disable previous button for first page of result
-		if (startNum == 1) {
-			$previous.removeClass('disable');
-		}
+    updateResultNumbers(dataCount);
+  });
 
-		// show results according to pagination after user clicked on next button
-		for (var i = endNum + 1; i < endNum + (num + 1); i++) {
-			$('.result:nth-of-type(' + i + ')').addClass('show');
-		}
+// function for next button click
+$next[0].addEventListener('click', function (e) {
+  e.preventDefault();
+  var startNum = parseInt($startNumElement[0].textContent),
+    endNum = parseInt($endNumElement[0].textContent);
 
-		$startNumElement.text(startNum + num);
-		$endNumElement.text(endNum + num);
-	});
+  // hide all existing results
+  document.querySelectorAll('.result').forEach(result => {
+    result.classList.remove('show');
+  });
 
-	// function for previous button click
-	$previous.click(function (e) {
-		e.preventDefault();
-		var $startNumElement = $('.res-numbers .start'),
-			startNum = parseInt($startNumElement.text()),
-			$endNumElement = $('.res-numbers .end'),
-			endNum = parseInt($endNumElement.text());
+  // disable previous button for first page of result
+  if (startNum == 1) {
+    $previous[0].classList.remove('disable');
+  }
 
-		// hide all existing results
-		$('.result').removeClass('show');
+  // show results according to pagination after user clicked on next button
+  for (var i = endNum + 1; i < endNum + (num + 1); i++) {
+    document.querySelector('.result:nth-of-type(' + i + ')').classList.add('show');
+  }
 
-		// disable previous button for first page of result
-		if (startNum == 1 + num) {
-			$previous.addClass('disable');
-		} else {
-			$previous.removeClass('disable');
-		}
+  $startNumElement[0].textContent = (startNum + num);
+  $endNumElement[0].textContent = (endNum + num);
+});
 
-		// show results according to pagination after user clicked on previous button
-		for (var i = startNum - num; i <= endNum - num; i++) {
-			$('.result:nth-of-type(' + i + ')').addClass('show');
-		}
+// function for previous button click
+$previous[0].addEventListener('click', function (e) {
+  e.preventDefault();
+  var startNum = parseInt($startNumElement[0].textContent),
+    endNum = parseInt($endNumElement[0].textContent);
 
-		$startNumElement.text(startNum - num);
-		$endNumElement.text(endNum - num);
-	});
+  // hide all existing results
+  document.querySelectorAll('.result').forEach(result => {
+    result.classList.remove('show');
+  });
 
-	// function for when user clicks on type checkboxes
-	$('.type a').click(function (e) {
-		e.preventDefault();
-		$(this).toggleClass('active');
+  // disable previous button for first page of result
+  if (startNum == 1 + num) {
+    $previous[0].classList.add('disable');
+  } else {
+    $previous[0].classList.remove('disable');
+  }
 
-		var typeObject = [];
+  // show results according to pagination after user clicked on previous button
+  for (var i = startNum - num; i <= endNum - num; i++) {
+    document.querySelector('.result:nth-of-type(' + i + ')').classList.add('show');
+  }
 
-		$searchField.val('');
+  $startNumElement[0].textContent = (startNum - num);
+  $endNumElement[0].textContent = (endNum - num);
+});
 
-		// remove all existing results
-		$('.result').remove();
-		$loader.show();
-		$message.removeClass('show');
+// function for when user clicks on type checkboxes
+document.querySelectorAll('.type a').forEach(a => {
+  a.addEventListener('click', function (e) {
+    e.preventDefault();
+    this.classList.toggle('active');
 
-		$('.type a.active').each(function (param) {
-			typeObject.push($(this).attr('data-type'));
-		});
+    var typeObject = [];
 
-		console.log(typeObject);
+    $searchField.value = '';
 
-		fetch(airportJson)
-			.then(function (response) {
-				return response.json();
-			})
-			.then(function (data) {
-				var dataR,
-					dataCount = Object.keys(data).length;
+    // remove all existing results
+    document.querySelectorAll('.result').forEach(result => {
+      result.remove();
+    });
+    $loader[0].classList.remove('hide');
+    $message[0].classList.remove('hide');
 
-				$loader.hide();
+    document.querySelectorAll('.type a.active').forEach(anchor => {
+      typeObject.push(anchor.getAttribute('data-type'));
+    });
 
-				if (typeObject.length === 0) {
-					for (var i = 0; i < dataCount; i++) {
-						dataR = data[i];
-						createList(dataR);
-					}
-				} else {
-					for (var i = 0; i < dataCount; i++) {
-						dataR = data[i];
+    fetch(airportJson)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        var dataR,
+          dataCount = Object.keys(data).length;
 
-						$.each(typeObject, function (index, value) {
-							if (dataR.type == value) {
-								createList(dataR);
-							}
-						});
-					}
-				}
+        $loader[0].classList.add('hide');
 
-				showHideMessage();
-				updateResultNumbers($('.result').length)
-			});
-	});
+        if (typeObject.length === 0) {
+          for (var i = 0; i < dataCount; i++) {
+            dataR = data[i];
+            createList(dataR);
+          }
+        } else {
+          for (var i = 0; i < dataCount; i++) {
+            dataR = data[i];
 
-	// Search form submit
-	$searchForm.submit(function (e) {
-		e.preventDefault();
-		var $this = $(this),
-			searchVal = $this.find('input[type="search"]').val().toLowerCase();
+            typeObject.forEach(function (value, index, array) {
+              if (dataR.type == value) {
+                createList(dataR);
+              }
+            });
+          }
+        }
 
-		// remove all existing results
-		$('.result').remove();
-		$loader.show();
-		$message.removeClass('show');
-		$('.type a').removeClass('active');
+        showHideMessage();
+        updateResultNumbers(document.querySelectorAll('.result').length);
+      });
+  });
+});
 
-		fetch(airportJson)
-			.then(function (response) {
-				return response.json();
-			})
-			.then(function (data) {
-				var dataR,
-					dataCount = Object.keys(data).length;
+// Search form submit
+$searchForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  var $this = $(this),
+    searchVal = $this.find('input[type="search"]').val().toLowerCase();
 
-				$loader.hide();
+  // remove all existing results
+  document.querySelectorAll('.result').forEach(result => {
+    result.remove();
+  });
 
-				if (searchVal == "") {
-					for (var i = 0; i < dataCount; i++) {
-						dataR = data[i];
-						createList(dataR);
-					}
-				} else {
-					for (var i = 0; i < dataCount; i++) {
-						dataR = data[i];
-						var name = dataR.name ? dataR.name.toString().toLowerCase() : '',
-							icao = dataR.icao ? dataR.icao.toString().toLowerCase() : '',
-							iata = dataR.iata ? dataR.iata.toString().toLowerCase() : '',
-							elevation = dataR.elevation ? dataR.elevation.toString().toLowerCase() : '',
-							latitude = dataR.latitude ? dataR.latitude.toString().toLowerCase() : '',
-							longitude = dataR.longitude ? dataR.longitude.toString().toLowerCase() : '';
+  $loader[0].classList.remove('hide');
+  $message[0].classList.remove('hide');
 
-						if (name.indexOf(searchVal) !== -1 || icao.indexOf(searchVal) !== -1 || iata.indexOf(searchVal) !== -1 || elevation.indexOf(searchVal) !== -1 || latitude.indexOf(searchVal) !== -1 || longitude.indexOf(searchVal) !== -1) {
-							createList(dataR);
-						}
-					}
-				}
+  document.querySelectorAll('.type a').forEach(anchor => {
+    anchor.classList.remove('active');
+  });
 
-				showHideMessage();
-				updateResultNumbers($('.result').length)
-			});
-	});
-})(jQuery, window, document);
+  fetch(airportJson)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var dataR,
+        dataCount = Object.keys(data).length;
+
+      $loader[0].classList.add('hide');
+
+      if (searchVal == "") {
+        for (var i = 0; i < dataCount; i++) {
+          dataR = data[i];
+          createList(dataR);
+        }
+      } else {
+        for (var i = 0; i < dataCount; i++) {
+          dataR = data[i];
+          var name = dataR.name ? dataR.name.toString().toLowerCase() : '',
+            icao = dataR.icao ? dataR.icao.toString().toLowerCase() : '',
+            iata = dataR.iata ? dataR.iata.toString().toLowerCase() : '',
+            elevation = dataR.elevation ? dataR.elevation.toString().toLowerCase() : '',
+            latitude = dataR.latitude ? dataR.latitude.toString().toLowerCase() : '',
+            longitude = dataR.longitude ? dataR.longitude.toString().toLowerCase() : '';
+
+          if (name.indexOf(searchVal) !== -1 || icao.indexOf(searchVal) !== -1 || iata.indexOf(searchVal) !== -1 || elevation.indexOf(searchVal) !== -1 || latitude.indexOf(searchVal) !== -1 || longitude.indexOf(searchVal) !== -1) {
+            createList(dataR);
+          }
+        }
+      }
+
+      showHideMessage();
+      updateResultNumbers(document.querySelectorAll('.result').length)
+    });
+});

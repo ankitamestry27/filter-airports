@@ -267,6 +267,8 @@ header {
   width: 45px;
   display: block;
   margin: 10px auto; }
+  .filter-section .loader.hide {
+    display: none; }
 .filter-section .bottom {
   margin-top: 45px;
   display: -webkit-box;

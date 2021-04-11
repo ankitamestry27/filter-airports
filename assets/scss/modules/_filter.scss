@@ -157,6 +157,8 @@
 		width: 45px;
     display: block;
     margin: 10px auto;
+
+		&.hide { display: none; }
 	}
 
 	.bottom {
