@@ -55,16 +55,18 @@ function createList(dataR) {
 
 // function for updating result numbers at bottom of the page
 function updateResultNumbers(count) {
-  if (count < num) {
+  if (count <= num) {
     for (var j = 1; j <= count; j++) {
       document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
     }
     $endNumElement[0].innerHTML = count;
+    $next[0].classList.add('disable');
   } else {
     for (var j = 1; j <= num; j++) {
       document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
     }
     $endNumElement[0].innerHTML = num;
+    $next[0].classList.remove('disable');
   }
 
   $startNumElement[0].innerHTML = 1;
@@ -193,7 +195,6 @@ function searchResults(data, dataCount, searchVal, typeObject) {
         });
       }
     }
-
   }
 }
 
@@ -242,7 +243,6 @@ document.querySelectorAll('.type a').forEach(a => {
   a.addEventListener('click', function (e) {
     e.preventDefault();
     this.classList.toggle('active');
-
     showFilterResults();
   });
 });
