@@ -9,19 +9,29 @@
 		$message = $('.message'),
 		$startNumElement = $('.res-numbers .start'),
 		$endNumElement = $('.res-numbers .end'),
-		$resTotal = $('.res-total');
+		$resTotal = $('.res-total'),
+		$searchForm = $('#searchForm'),
+		$searchField = $searchForm.find('input[type="search"]');
 
 	// function for creating list
 	function createList(dataR) {
+		var name = dataR.name ? dataR.name : '-',
+			icao = dataR.icao ? dataR.icao : '-',
+			iata = dataR.iata ? dataR.iata : '-',
+			elevation = dataR.elevation ? dataR.elevation : '-',
+			latitude = dataR.latitude ? dataR.latitude : '-',
+			longitude = dataR.longitude ? dataR.longitude : '-',
+			type = dataR.type ? dataR.type : '-';
+
 		li = `<li class="result">
 			<ul>
-				<li>` + dataR.name + `</li>
-				<li>` + dataR.icao + `</li>
-				<li>` + dataR.iata + `</li>
-				<li>` + dataR.elevation + `</li>
-				<li>` + dataR.latitude + `</li>
-				<li>` + dataR.longitude + `</li>
-				<li>` + dataR.type + `</li>
+				<li>` + name + `</li>
+				<li>` + icao + `</li>
+				<li>` + iata + `</li>
+				<li>` + elevation + `</li>
+				<li>` + latitude + `</li>
+				<li>` + longitude + `</li>
+				<li>` + type + `</li>
 			</ul>
 		</li>`;
 
@@ -37,6 +47,15 @@
 		$startNumElement.text(1);
 		$endNumElement.text(num);
 		$resTotal.text(count);
+	}
+
+	// Show OR Hide message
+	function showHideMessage() {
+		if ($('.result').length == 0) {
+			$message.addClass('show');
+		} else {
+			$message.removeClass('show');
+		}
 	}
 
 	// show results on page load
@@ -69,12 +88,10 @@
 		// hide all existing results
 		$('.result').removeClass('show');
 
-
-		// if (startNum == 1) {
-		// 	$previous.addClass('disable');
-		// } else {
-		// 	$previous.removeClass('disable');
-		// }
+		// disable previous button for first page of result
+		if (startNum == 1) {
+			$previous.removeClass('disable');
+		}
 
 		// show results according to pagination after user clicked on next button
 		for (var i = endNum + 1; i < endNum + (num + 1); i++) {
@@ -96,11 +113,12 @@
 		// hide all existing results
 		$('.result').removeClass('show');
 
-		// if (startNum == 1 + num) {
-		// 	$previous.addClass('disable');
-		// } else {
-		// 	$previous.removeClass('disable');
-		// }
+		// disable previous button for first page of result
+		if (startNum == 1 + num) {
+			$previous.addClass('disable');
+		} else {
+			$previous.removeClass('disable');
+		}
 
 		// show results according to pagination after user clicked on previous button
 		for (var i = startNum - num; i <= endNum - num; i++) {
@@ -114,11 +132,11 @@
 	// function for when user clicks on type checkboxes
 	$('.type a').click(function (e) {
 		e.preventDefault();
+		$(this).toggleClass('active');
 
-		var $this = $(this),
-			typeObject = [];
+		var typeObject = [];
 
-		$this.toggleClass('active');
+		$searchField.val('');
 
 		// remove all existing results
 		$('.result').remove();
@@ -142,7 +160,6 @@
 				$loader.hide();
 
 				if (typeObject.length === 0) {
-					console.log('hit');
 					for (var i = 0; i < dataCount; i++) {
 						dataR = data[i];
 						createList(dataR);
@@ -159,12 +176,55 @@
 					}
 				}
 
-				if ($('.result').length == 0) {
-					$message.addClass('show');
+				showHideMessage();
+				updateResultNumbers($('.result').length)
+			});
+	});
+
+	// Search form submit
+	$searchForm.submit(function (e) {
+		e.preventDefault();
+		var $this = $(this),
+			searchVal = $this.find('input[type="search"]').val().toLowerCase();
+
+		// remove all existing results
+		$('.result').remove();
+		$loader.show();
+		$message.removeClass('show');
+		$('.type a').removeClass('active');
+
+		fetch(airportJson)
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				var dataR,
+					dataCount = Object.keys(data).length;
+
+				$loader.hide();
+
+				if (searchVal == "") {
+					for (var i = 0; i < dataCount; i++) {
+						dataR = data[i];
+						createList(dataR);
+					}
 				} else {
-					$message.removeClass('show');
+					for (var i = 0; i < dataCount; i++) {
+						dataR = data[i];
+						var name = dataR.name ? dataR.name.toString().toLowerCase() : '',
+							icao = dataR.icao ? dataR.icao.toString().toLowerCase() : '',
+							iata = dataR.iata ? dataR.iata.toString().toLowerCase() : '',
+							elevation = dataR.elevation ? dataR.elevation.toString().toLowerCase() : '',
+							latitude = dataR.latitude ? dataR.latitude.toString().toLowerCase() : '',
+							longitude = dataR.longitude ? dataR.longitude.toString().toLowerCase() : '';
+
+						if (name.indexOf(searchVal) !== -1 || icao.indexOf(searchVal) !== -1 || iata.indexOf(searchVal) !== -1 || elevation.indexOf(searchVal) !== -1 || latitude.indexOf(searchVal) !== -1 || longitude.indexOf(searchVal) !== -1) {
+							createList(dataR);
+						}
+					}
 				}
 
+				showHideMessage();
 				updateResultNumbers($('.result').length)
 			});
 	});
