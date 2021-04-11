@@ -55,12 +55,19 @@ function createList(dataR) {
 
 // function for updating result numbers at bottom of the page
 function updateResultNumbers(count) {
-  for (var j = 1; j <= num; j++) {
-    document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
+  if (count < num) {
+    for (var j = 1; j <= count; j++) {
+      document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
+    }
+    $endNumElement[0].innerHTML = count;
+  } else {
+    for (var j = 1; j <= num; j++) {
+      document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
+    }
+    $endNumElement[0].innerHTML = num;
   }
 
   $startNumElement[0].innerHTML = 1;
-  $endNumElement[0].innerHTML = num;
   $resTotal[0].innerHTML = count;
 }
 
@@ -142,76 +149,68 @@ $previous[0].addEventListener('click', function (e) {
   $endNumElement[0].textContent = (endNum - num);
 });
 
-// function for when user clicks on type checkboxes
-document.querySelectorAll('.type a').forEach(a => {
-  a.addEventListener('click', function (e) {
-    e.preventDefault();
-    this.classList.toggle('active');
+// function to show Checkbox results
+function showCheckboxResults(data, typeObject, dataCount) {
+  if (typeObject.length === 0) {
+    for (var i = 0; i < dataCount; i++) {
+      dataR = data[i];
+      createList(dataR);
+    }
+  } else {
+    for (var i = 0; i < dataCount; i++) {
+      dataR = data[i];
 
-    var typeObject = [];
+      typeObject.forEach(function (value, index, array) {
+        if (dataR.type == value) {
+          createList(dataR);
+        }
+      });
+    }
+  }
+}
 
-    $searchField.value = '';
+// function to show search results
+function searchResults(data, dataCount, searchVal, typeObject) {
+  for (var i = 0; i < dataCount; i++) {
+    var dataR = data[i];
+    var name = dataR.name ? dataR.name.toString().toLowerCase() : '',
+      icao = dataR.icao ? dataR.icao.toString().toLowerCase() : '',
+      iata = dataR.iata ? dataR.iata.toString().toLowerCase() : '',
+      elevation = dataR.elevation ? dataR.elevation.toString().toLowerCase() : '',
+      latitude = dataR.latitude ? dataR.latitude.toString().toLowerCase() : '',
+      longitude = dataR.longitude ? dataR.longitude.toString().toLowerCase() : '';
 
-    // remove all existing results
-    document.querySelectorAll('.result').forEach(result => {
-      result.remove();
-    });
-    $loader[0].classList.remove('hide');
-    $message[0].classList.remove('hide');
-
-    document.querySelectorAll('.type a.active').forEach(anchor => {
-      typeObject.push(anchor.getAttribute('data-type'));
-    });
-
-    fetch(airportJson)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        var dataR,
-          dataCount = Object.keys(data).length;
-
-        $loader[0].classList.add('hide');
-
-        if (typeObject.length === 0) {
-          for (var i = 0; i < dataCount; i++) {
-            dataR = data[i];
+    if (typeObject == null) {
+      if (name.indexOf(searchVal) !== -1 || icao.indexOf(searchVal) !== -1 || iata.indexOf(searchVal) !== -1 || elevation.indexOf(searchVal) !== -1 || latitude.indexOf(searchVal) !== -1 || longitude.indexOf(searchVal) !== -1) {
+        createList(dataR);
+      }
+    } else {
+      if (name.indexOf(searchVal) !== -1 || icao.indexOf(searchVal) !== -1 || iata.indexOf(searchVal) !== -1 || elevation.indexOf(searchVal) !== -1 || latitude.indexOf(searchVal) !== -1 || longitude.indexOf(searchVal) !== -1) {
+        typeObject.forEach(function (value, index, array) {
+          if (dataR.type == value) {
             createList(dataR);
           }
-        } else {
-          for (var i = 0; i < dataCount; i++) {
-            dataR = data[i];
+        });
+      }
+    }
 
-            typeObject.forEach(function (value, index, array) {
-              if (dataR.type == value) {
-                createList(dataR);
-              }
-            });
-          }
-        }
+  }
+}
 
-        showHideMessage();
-        updateResultNumbers(document.querySelectorAll('.result').length);
-      });
-  });
-});
-
-// Search form submit
-$searchForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  var $this = $(this),
-    searchVal = $this.find('input[type="search"]').val().toLowerCase();
+// function to show all filter results
+function showFilterResults() {
+  var searchVal = $searchField.value.toLowerCase(),
+    typeObject = [];
 
   // remove all existing results
   document.querySelectorAll('.result').forEach(result => {
     result.remove();
   });
-
   $loader[0].classList.remove('hide');
   $message[0].classList.remove('hide');
 
-  document.querySelectorAll('.type a').forEach(anchor => {
-    anchor.classList.remove('active');
+  document.querySelectorAll('.type a.active').forEach(anchor => {
+    typeObject.push(anchor.getAttribute('data-type'));
   });
 
   fetch(airportJson)
@@ -219,33 +218,37 @@ $searchForm.addEventListener('submit', function (e) {
       return response.json();
     })
     .then(function (data) {
-      var dataR,
-        dataCount = Object.keys(data).length;
+      var dataCount = Object.keys(data).length;
 
       $loader[0].classList.add('hide');
 
       if (searchVal == "") {
-        for (var i = 0; i < dataCount; i++) {
-          dataR = data[i];
-          createList(dataR);
-        }
+        showCheckboxResults(data, typeObject, dataCount);
       } else {
-        for (var i = 0; i < dataCount; i++) {
-          dataR = data[i];
-          var name = dataR.name ? dataR.name.toString().toLowerCase() : '',
-            icao = dataR.icao ? dataR.icao.toString().toLowerCase() : '',
-            iata = dataR.iata ? dataR.iata.toString().toLowerCase() : '',
-            elevation = dataR.elevation ? dataR.elevation.toString().toLowerCase() : '',
-            latitude = dataR.latitude ? dataR.latitude.toString().toLowerCase() : '',
-            longitude = dataR.longitude ? dataR.longitude.toString().toLowerCase() : '';
-
-          if (name.indexOf(searchVal) !== -1 || icao.indexOf(searchVal) !== -1 || iata.indexOf(searchVal) !== -1 || elevation.indexOf(searchVal) !== -1 || latitude.indexOf(searchVal) !== -1 || longitude.indexOf(searchVal) !== -1) {
-            createList(dataR);
-          }
+        if (typeObject.length === 0) {
+          searchResults(data, dataCount, searchVal, null);
+        } else {
+          searchResults(data, dataCount, searchVal, typeObject);
         }
       }
 
       showHideMessage();
-      updateResultNumbers(document.querySelectorAll('.result').length)
+      updateResultNumbers(document.querySelectorAll('.result').length);
     });
+}
+
+// function for when user clicks on type checkboxes
+document.querySelectorAll('.type a').forEach(a => {
+  a.addEventListener('click', function (e) {
+    e.preventDefault();
+    this.classList.toggle('active');
+
+    showFilterResults();
+  });
+});
+
+// Search form submit
+$searchForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  showFilterResults();
 });
