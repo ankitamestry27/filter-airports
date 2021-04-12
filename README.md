@@ -1,4 +1,4 @@
-# filter-airports
+# Filter Airports
 
 ## command for sass
 1. cd assets/
