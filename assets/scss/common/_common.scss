@@ -35,7 +35,7 @@ body {
   width: 93%;
   margin: 0 auto;
 
-  @include responsive(map-get($breakpoints, iphone-potrait)) { width: 96%; }
+  @include responsive(map-get($breakpoints, iphone-potrait)) { width: 90%; }
 }
 
 a { text-decoration: none; }

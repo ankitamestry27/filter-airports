@@ -80,7 +80,7 @@ body {
   margin: 0 auto; }
   @media only screen and (max-width: 480px) {
     .wrapper {
-      width: 96%; } }
+      width: 90%; } }
 
 a {
   text-decoration: none; }
