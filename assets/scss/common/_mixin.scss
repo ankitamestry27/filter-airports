@@ -16,6 +16,11 @@
   box-sizing: $value;
 }
 
+@mixin box-shadow($value...) {
+ -webkit-box-shadow: $value;
+  box-shadow: $value; 
+}
+
 // === Animations
 
 @mixin transition($value) {
