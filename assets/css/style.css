@@ -215,6 +215,18 @@ header {
     @media only screen and (max-width: 480px) {
       .filter-section .right input {
         width: 100%; } }
+    .filter-section .right input::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: #d3d3d3; }
+    .filter-section .right input::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #d3d3d3; }
+    .filter-section .right input:-ms-input-placeholder {
+      /* IE 10+ */
+      color: #d3d3d3; }
+    .filter-section .right input:-moz-placeholder {
+      /* Firefox 18- */
+      color: #d3d3d3; }
 .filter-section .filter .header, .filter-section .result ul {
   padding: 27px 15px;
   display: -webkit-box;

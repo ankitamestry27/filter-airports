@@ -4,9 +4,7 @@
 		@include flexbox();
 		@include justify-content(space-between);
 
-		@include responsive(map-get($breakpoints, ipad)) {
-			display: block;
-		}
+		@include responsive(map-get($breakpoints, ipad)) { display: block; }
 	}
 	
 	.type {
@@ -85,6 +83,8 @@
 			}
 
 			@include responsive(map-get($breakpoints, iphone-potrait)) { width: 100%; }
+
+			@include placeholder() { color: map-get($colors , grey-darker);	}
 		}
 	}
 
@@ -115,12 +115,9 @@
 
 		.header {
 			@extend %list;
-			
 			background-color: map-get($colors , grey-dark);
 
-			li {
-				font-weight: bold;
-			}
+			li { font-weight: bold; }
 		}
 	}
 
@@ -129,18 +126,13 @@
 			display: none;
 			background-color: map-get($colors , grey);
 
-			&:nth-of-type(2n) {
-				background-color: map-get($colors , secondary);
-			}
+			&:nth-of-type(2n) { background-color: map-get($colors , secondary); }
 		}
 	}
 
 	.result {
 		&.show { display: block; }
-
-		ul {
-			@extend %list;
-		}
+		ul { @extend %list;	}
 	}
 
 	.message {
@@ -190,9 +182,7 @@
 				@include responsive(map-get($breakpoints, ipad)) { font-size: 24px; }
 			}
 
-			&.disable {
-				z-index: -9999;
-			}
+			&.disable { z-index: -9999; }
 		}
 
 		.previous {

@@ -1,17 +1,16 @@
 var num = 4, // variable for total number of results should display on frontend
   airportJson = './assets/data/airports.json',
-  $previous = document.getElementsByClassName('previous'),
-  $next = document.getElementsByClassName('next'),
-  $loader = document.getElementsByClassName('loader'),
-  $results = document.getElementsByClassName('results'),
+  $previous = document.getElementById('previousButton'),
+  $next = document.getElementById('nextButton'),
+  $loader = document.getElementById('loaderGif'),
   li = '',
   ul = '',
-  $message = document.getElementsByClassName('message'),
-  $startNumElement = document.getElementsByClassName('start'),
-  $endNumElement = document.getElementsByClassName('end'),
-  $resTotal = document.getElementsByClassName('res-total'),
+  $message = document.getElementById('resultMessage'),
+  $startNumElement = document.getElementById('startNum'),
+  $endNumElement = document.getElementById('endNum'),
+  $resTotal = document.getElementById('resultTotal'),
   $searchForm = document.getElementById('searchForm'),
-  $searchField = document.querySelector('#searchForm input[type="search"]');
+  $searchField = document.getElementById('searchBox');
 
 // function for creating list
 function createList(dataR) {
@@ -50,7 +49,7 @@ function createList(dataR) {
   createLi(longitudeLi, longitude);
   createLi(typeLi, type);
 
-  document.getElementsByClassName('results')[0].appendChild(li);
+  document.getElementById('results').appendChild(li);
 }
 
 // function for updating result numbers at bottom of the page
@@ -59,26 +58,26 @@ function updateResultNumbers(count) {
     for (var j = 1; j <= count; j++) {
       document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
     }
-    $endNumElement[0].innerHTML = count;
-    $next[0].classList.add('disable');
+    $endNumElement.innerHTML = count;
+    $next.classList.add('disable');
   } else {
     for (var j = 1; j <= num; j++) {
       document.querySelector('.result:nth-of-type(' + j + ')').classList.add('show');
     }
-    $endNumElement[0].innerHTML = num;
-    $next[0].classList.remove('disable');
+    $endNumElement.innerHTML = num;
+    $next.classList.remove('disable');
   }
 
-  $startNumElement[0].innerHTML = 1;
-  $resTotal[0].innerHTML = count;
+  $startNumElement.innerHTML = 1;
+  $resTotal.innerHTML = count;
 }
 
 // Show OR Hide message
 function showHideMessage() {
   if (document.getElementsByClassName('result').length == 0) {
-    $message[0].classList.add('show');
+    $message.classList.add('show');
   } else {
-    $message[0].classList.remove('show');
+    $message.classList.remove('show');
   }
 }
 
@@ -90,7 +89,7 @@ fetch(airportJson)
   .then(function (data) {
     var dataCount = Object.keys(data).length;
 
-    $loader[0].classList.add('hide');
+    $loader.classList.add('hide');
 
     for (var i = 0; i < dataCount; i++) {
       createList(data[i]);
@@ -100,10 +99,10 @@ fetch(airportJson)
   });
 
 // function for next button click
-$next[0].addEventListener('click', function (e) {
+$next.addEventListener('click', function (e) {
   e.preventDefault();
-  var startNum = parseInt($startNumElement[0].textContent),
-    endNum = parseInt($endNumElement[0].textContent);
+  var startNum = parseInt($startNumElement.textContent),
+    endNum = parseInt($endNumElement.textContent);
 
   // hide all existing results
   document.querySelectorAll('.result').forEach(result => {
@@ -112,7 +111,7 @@ $next[0].addEventListener('click', function (e) {
 
   // disable previous button for first page of result
   if (startNum == 1) {
-    $previous[0].classList.remove('disable');
+    $previous.classList.remove('disable');
   }
 
   // show results according to pagination after user clicked on next button
@@ -120,15 +119,15 @@ $next[0].addEventListener('click', function (e) {
     document.querySelector('.result:nth-of-type(' + i + ')').classList.add('show');
   }
 
-  $startNumElement[0].textContent = (startNum + num);
-  $endNumElement[0].textContent = (endNum + num);
+  $startNumElement.textContent = (startNum + num);
+  $endNumElement.textContent = (endNum + num);
 });
 
 // function for previous button click
-$previous[0].addEventListener('click', function (e) {
+$previous.addEventListener('click', function (e) {
   e.preventDefault();
-  var startNum = parseInt($startNumElement[0].textContent),
-    endNum = parseInt($endNumElement[0].textContent);
+  var startNum = parseInt($startNumElement.textContent),
+    endNum = parseInt($endNumElement.textContent);
 
   // hide all existing results
   document.querySelectorAll('.result').forEach(result => {
@@ -137,9 +136,9 @@ $previous[0].addEventListener('click', function (e) {
 
   // disable previous button for first page of result
   if (startNum == 1 + num) {
-    $previous[0].classList.add('disable');
+    $previous.classList.add('disable');
   } else {
-    $previous[0].classList.remove('disable');
+    $previous.classList.remove('disable');
   }
 
   // show results according to pagination after user clicked on previous button
@@ -147,8 +146,8 @@ $previous[0].addEventListener('click', function (e) {
     document.querySelector('.result:nth-of-type(' + i + ')').classList.add('show');
   }
 
-  $startNumElement[0].textContent = (startNum - num);
-  $endNumElement[0].textContent = (endNum - num);
+  $startNumElement.textContent = (startNum - num);
+  $endNumElement.textContent = (endNum - num);
 });
 
 // function to show Checkbox results
@@ -207,8 +206,8 @@ function showFilterResults() {
   document.querySelectorAll('.result').forEach(result => {
     result.remove();
   });
-  $loader[0].classList.remove('hide');
-  $message[0].classList.remove('hide');
+  $loader.classList.remove('hide');
+  $message.classList.remove('hide');
 
   document.querySelectorAll('.type a.active').forEach(anchor => {
     typeObject.push(anchor.getAttribute('data-type'));
@@ -221,7 +220,7 @@ function showFilterResults() {
     .then(function (data) {
       var dataCount = Object.keys(data).length;
 
-      $loader[0].classList.add('hide');
+      $loader.classList.add('hide');
 
       if (searchVal == "") {
         showCheckboxResults(data, typeObject, dataCount);

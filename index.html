@@ -44,7 +44,7 @@
             <div class="right">
               <h2>Filter by search</h2>
               <form action="index.html" id="searchForm">
-                <input type="search" title="Search" placeholder="Search here">
+                <input type="search" title="Search" placeholder="Search here" id="searchBox">
               </form>
             </div>
           </div>
@@ -61,18 +61,19 @@
                 <li>Long.</li>
                 <li>Type</li>
               </ul>
-              <ul class="results"></ul>
+              <ul class="results" id="results"></ul>
             </div>
           </div>
           <!-- filter division ends here -->
-          <span class="message">No Results Found</span>
-          <img src="./assets/images/loader.gif" alt="Loader" class="loader">
+          <span class="message" id="resultMessage">No Results Found</span>
+          <img src="./assets/images/loader.gif" alt="Loader" class="loader" id="loaderGif">
           <div class="bottom">
-            <a href="#FIXME" class="previous disable" title="Previous">previous</a>
-            <span class="results-text">Showing <span class="res-numbers"><span class="start">0</span>-<span
-                  class="end">0</span></span> of <span class="res-total">0</span>
+            <a href="#FIXME" class="previous disable" title="Previous" id="previousButton">previous</a>
+            <span class="results-text">Showing <span class="res-numbers"><span class="start"
+                  id="startNum">0</span>-<span class="end" id="endNum">0</span></span> of <span class="res-total"
+                id="resultTotal">0</span>
               results</span>
-            <a href="#FIXME" class="next" title="Next">next</a>
+            <a href="#FIXME" class="next" title="Next" id="nextButton">next</a>
           </div>
         </div>
       </section>

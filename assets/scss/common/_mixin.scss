@@ -138,15 +138,3 @@
     @content;
   }
 }
-
-@mixin transformStyle($property, $value) {
-  -webkit-#{$property}: $value;
-  #{$property}: $value;
-}
-
-@mixin mozilla() {
-  @-moz-document url-prefix() {
-    @content;
-  }
-}
-
