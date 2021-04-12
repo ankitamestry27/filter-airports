@@ -72,7 +72,8 @@ body {
   @media only screen and (max-width: 480px) {
     .container {
       width: 100%;
-      margin: 0 auto; } }
+      margin: 0 auto;
+      padding-bottom: 80px; } }
 
 .wrapper {
   width: 93%;
@@ -311,8 +312,9 @@ header {
       @media only screen and (max-width: 995px) {
         .filter-section .bottom .previous::before, .filter-section .bottom .next::before {
           font-size: 24px; } }
-    .filter-section .bottom .previous:hover::before, .filter-section .bottom .next:hover::before {
-      color: #444; }
+    @media only screen and (min-width: 996px) {
+      .filter-section .bottom .previous:hover::before, .filter-section .bottom .next:hover::before {
+        color: #444; } }
     .filter-section .bottom .disable.previous, .filter-section .bottom .disable.next {
       z-index: -9999; }
   .filter-section .bottom .previous::before {

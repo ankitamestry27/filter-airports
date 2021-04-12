@@ -185,8 +185,10 @@
 			}
 
 			&:hover { 
-				&::before {
-					color: map-get($colors , grey-darkest); 
+				@include responsive-reverse(map-get($breakpoints, ipad-size)){
+					&::before {
+						color: map-get($colors , grey-darkest); 
+					}
 				}
 			}
 

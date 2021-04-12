@@ -27,6 +27,7 @@ body {
   @include responsive(map-get($breakpoints, iphone-potrait)) {
     width: 100%;
     margin: 0 auto;
+    padding-bottom: 80px;
   }
 }
 
