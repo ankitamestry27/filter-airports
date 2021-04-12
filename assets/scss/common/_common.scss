@@ -1,15 +1,3 @@
-.cf { 
-  *zoom: 1; 
-
-  &::after { clear: both; }
-
-  &::before,
-  &::after {
-    display: table;
-    content: " ";
-  }
-}
-
 img { 
 	max-width: 100%;
 	height: auto; 
@@ -24,9 +12,7 @@ body {
 
   @include responsive(map-get($breakpoints, iphone-potrait)) { background-color: map-get($colors , secondary); }
 
-  * {
-    font-family: sans-serif;
-  }
+  * { font-family: sans-serif; }
 }
 
 .container {
@@ -51,9 +37,7 @@ body {
   @include responsive(map-get($breakpoints, iphone-potrait)) { width: 96%; }
 }
 
-a {
-  text-decoration: none;  
-}
+a { text-decoration: none; }
 
 h1 {
   font-size: 52px;

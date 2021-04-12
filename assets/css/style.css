@@ -43,14 +43,6 @@ table {
 =========================*/
 /* Breakpoints
 =========================*/
-.cf {
-  *zoom: 1; }
-  .cf::after {
-    clear: both; }
-  .cf::before, .cf::after {
-    display: table;
-    content: " "; }
-
 img {
   max-width: 100%;
   height: auto; }
@@ -256,6 +248,9 @@ header {
   @media only screen and (max-width: 767px) {
     .filter-section .filter .wrap {
       width: 170%; } }
+  @media only screen and (max-width: 480px) {
+    .filter-section .filter .wrap {
+      width: 210%; } }
   .filter-section .filter .header {
     background-color: #e7e7e7; }
     .filter-section .filter .header li {
@@ -310,10 +305,14 @@ header {
       text-indent: 0;
       position: absolute;
       color: #000;
-      font-size: 27px; }
+      font-size: 27px;
+      -webkit-transition: 0.2s ease;
+      transition: 0.2s ease; }
       @media only screen and (max-width: 995px) {
         .filter-section .bottom .previous::before, .filter-section .bottom .next::before {
           font-size: 24px; } }
+    .filter-section .bottom .previous:hover::before, .filter-section .bottom .next:hover::before {
+      color: #444; }
     .filter-section .bottom .disable.previous, .filter-section .bottom .disable.next {
       z-index: -9999; }
   .filter-section .bottom .previous::before {

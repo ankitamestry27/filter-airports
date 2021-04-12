@@ -111,6 +111,7 @@
 
 		.wrap {
 			@include responsive(map-get($breakpoints, iphone)) { width: 170%; }
+			@include responsive(map-get($breakpoints, iphone-potrait)) { width: 210%; }
 		}
 
 		.header {
@@ -178,8 +179,15 @@
 				position: absolute;
 				color: map-get($colors , primary);
 				font-size: 27px;
+				@include transition(0.2s ease);
 
 				@include responsive(map-get($breakpoints, ipad)) { font-size: 24px; }
+			}
+
+			&:hover { 
+				&::before {
+					color: map-get($colors , grey-darkest); 
+				}
 			}
 
 			&.disable { z-index: -9999; }

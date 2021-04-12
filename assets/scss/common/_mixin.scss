@@ -10,27 +10,19 @@
   }
 }
 
-@mixin transition-vendor($property, $name, $duration, $timing-func, $delay) {
-  -webkit-#{$property}: $name $duration $timing-func $delay;
-  -moz-#{$property}: $name $duration $timing-func $delay;
-  -ms-#{$property}: $name $duration $timing-func $delay;
-  -o-#{$property}: $name $duration $timing-func $delay;
-  #{$property}: $name $duration $timing-func $delay;
-}
-
-@mixin box-sizing($value...){
+@mixin box-sizing($value...) {
   -webkit-box-sizing: $value;
   -moz-box-sizing: $value;
   box-sizing: $value;
 }
 
-@mixin box-shadow($value){
+@mixin box-shadow($value) {
   -webkit-box-shadow: $value;
   -moz-box-shadow: $value;
   box-shadow: $value;
 }
 
-@mixin border-radius($value){
+@mixin border-radius($value) {
   -moz-border-radius: $value;
   -webkit-border-radius: $value;
   border-radius: $value;
